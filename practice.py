@@ -1,5 +1,8 @@
-name = 'mkp'
-sentence = 'hello ' + name
-age = 9
+from random import *
 
-print(sentence + str(age))
+nums = range(1, 21)
+users = list(nums)
+
+result = sample(users, 4)
+
+print(result)

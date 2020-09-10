@@ -127,4 +127,23 @@ str[-7:] # 뒤에서부터 7 까지
 
 37. list(value) => type 을 리스트로 만든다.
 
-38. tuple(value), set(value)
+38. tuple(value), set(value) 사용가능
+
+### function
+
+39. 가변인자 사용법
+
+```
+def profile(name, age, *language):
+	for lang in language
+		print(lang)
+```
+
+40. 함수내에서 전역변수를 사용하기 위해 global 키워드를 사용한다
+
+```
+b = 10
+def add(a):
+	global b
+	return a + b
+```

@@ -1,8 +1,6 @@
-from random import *
+with open('ttt.txt', "r", encoding="utf-8") as hello:
+    print(hello.read())
 
-nums = range(1, 21)
-users = list(nums)
-
-result = sample(users, 4)
-
-print(result)
+# obj = {'name': 'kan', 'age': 31}
+# print(obj)
+# pickle.dump(obj, src_file)

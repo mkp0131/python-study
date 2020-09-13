@@ -147,3 +147,56 @@ def add(a):
 	global b
 	return a + b
 ```
+
+### 파일쓰기
+
+41. open 함수 사용.
+
+```
+src_file = open('ttt.txt', "w", encoding="utf-8")
+print('안녕하세요.', file=src_file)
+src_file.close()
+```
+
+42. "w" => 덮어쓰기(새로운파일생성), "a" => 이어쓰기(append)
+
+43. "r" => 읽어오기
+
+```
+src_file = open('ttt.txt', "r", encoding="utf-8")
+print(src_file.read())
+src_file.close()
+```
+
+44. src_file.read() => 모두 읽기, readline() => 한줄 읽기, readline() => [한줄내용, 한줄내용] 으로 return
+
+45. 자료형을 파일에 저장할때 pickle 사용
+
+```
+import pickle
+
+obj = {'name': 'kan', 'age': 31}
+src_file = open('ttt.pickle', "wb")
+pickle.dump(obj, src_file)
+src_file.close()
+```
+
+46. wb => 바이너리 데이터 쓰기, rb => 바이너리 데이터 읽기
+
+47. 파일에서 데이터 읽기
+
+```
+import pickle
+
+src_file = open('ttt.pickle', "rb")
+profile = pickle.load(src_file)
+print(profile)
+src_file.close()
+```
+
+48. with 를 사용하여 file 닫기 없이 가독성 좋게 사용하기
+
+```
+with open('ttt.txt', "r", encoding="utf-8") as hello:
+    print(hello.read())
+```

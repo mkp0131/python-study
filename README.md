@@ -200,3 +200,70 @@ src_file.close()
 with open('ttt.txt', "r", encoding="utf-8") as hello:
     print(hello.read())
 ```
+
+50. 연습문제
+
+```
+# 주간보고서를 50주차(50개) 만드시오.
+# 파일이름규칙 "1주차", "2주차" ...
+# 보고서 형태
+# - X 주차 보고서 -
+# 부서:
+# 이름:
+
+for index in range(1, 51):
+    memo = '- {0}주차 보고서 -\n부서: 개발팀\n이름: 박민규'.format(index)
+    with open('./주간보고서/{0}주차.txt'.format(index), "w",
+              encoding="utf-8") as weeklyReport:
+        print(memo, file=weeklyReport)
+
+```
+
+### class 클래스
+
+# 기본클래스 정의
+
+class Unit:
+def **init**(self, name, hp):
+self.name = name
+self.hp = hp
+
+# 메소드 정의
+
+def damaged(self, damage):
+self.hp -= damage
+if self.hp <= 0:
+print('{0}: 파괴되었습니다.'.format(self.name))
+else:
+print('{0}: {1} 데미지를 입었습니다. [hp {2}]'.format(self.name, damage, self.hp))
+
+# 클래스 상속
+
+class AttackUnit(Unit):
+def **init**(self, name, hp, damage):
+Unit.**init**(self, name, hp)
+self.damage = damage
+
+def attack(self, location):
+print('{1}: {0} 방향으로 공격합니다.[공격력 {2}]'.format(location, self.name, self.damage))
+
+class Flyable:
+def **init**(self, flying_speed):
+self.flying_speed = flying_speed
+
+def fly(self, name, location):
+print('{0}: {1} 로 날아갑니다. [속도 {2}]'.format(name, location, self.flying_speed))
+
+# 다중상속
+
+class FlyableAttackUnit(AttackUnit, Flyable):
+def **init**(self, name, hp, damage, flying_speed):
+AttackUnit.**init**(self, name, hp, damage)
+Flyable.**init**(self, flying_speed)
+
+# marine = Flyable(100)
+
+# marine.fly('마린', 10)
+
+prince = FlyableAttackUnit('스카웃', 100, 60, 999)
+prince.fly(prince.name, 10)

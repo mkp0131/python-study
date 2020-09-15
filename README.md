@@ -355,3 +355,9 @@ import inspect
 import random
 print(inspect.getfile(random)) # random 모듈의 위치
 ```
+
+### dir()
+
+1. dir() => 어떤 패키지를 사용할수있는지 리스트가 나옴
+2. dir(random) => 패키지에 변수와 메소드를 사용할수있는지 리스트 나옴
+3. dir([1,2,3]) => arr 에 속해있는 메소드 리스트

@@ -267,3 +267,91 @@ Flyable.**init**(self, flying_speed)
 
 prince = FlyableAttackUnit('스카웃', 100, 60, 999)
 prince.fly(prince.name, 10)
+
+# 내가 원하는 error 메세지를 출력할 수 있게 만듦.
+
+class NumberError(Exception):
+def **init**(self, msg):
+self.msg = msg
+
+def **str**(self):
+return self.msg
+
+try:
+raise NumberError('안녕') # 의도적으로 에러발생
+except NumberError as err: # ValueError 에러일때 에러메세지 발생
+print("에러입니다")
+print(err)
+finally: # 무조건 실행
+print('Thank you')
+
+class SoldOutErr(Exception):
+def **init**(self, msg):
+self.msg = msg
+def **str**(self):
+return self.msg
+
+chichen = 10
+
+while True:
+
+try:
+order = int(input('몇마리 주문?'))
+
+      if(not order):
+         raise ValueError
+         continue
+      else:
+         if (chichen < order):
+            print('재료가 부족합니다. {0} 마리 주문가능합니다.'.format(chichen))
+            continue
+
+         chichen -= order
+         print('{0} 마리 나왔습니다.'.format(order))
+         if(chichen == 0):
+            raise SoldOutErr('#### 주문이 모두 소진되었습니다. ####')
+
+except ValueError:
+print('#### 주문을 다시해주세요. ####')
+except SoldOutErr as err:
+print(err)
+print("#### 영업을 종료합니다.👏 ####")
+break
+
+### module
+
+#### 1. 단순한 사용(안에 있는 함수 모두 가져오기)
+
+import apple
+apple.hello()
+
+#### 2. 이름을 지정(안에 있는 함수 모두 가져오기)
+
+import apple as fruit
+fruit.hello()
+
+#### 3. 전역 사용
+
+from apple import \*
+
+#### 4. 전역사용으로 원하는 함수만 가져오기
+
+from apple import hello as hi
+
+#### \* 폴더는 . 으로 표시
+
+### pakage
+
+0. 파이썬 파일들을 폴더로 묶어 놓음.
+1. form apple import \* # apple 이라는 폴더에 있는 모든 .py 파일을 사용하기 원할경우, 공개설정을 해야함.
+2. **init**.py # 패키지폴더에서의 공개설정
+3. **all** = ["vietnam"] # vietnam.py 를 공개한다.
+4. py 파일내에서 직접실행시 무언가를 추가하고싶을경우 => **name** 정보를 활용
+   => 파일내에서 직접 사용시 if **name == "**main\_\_"
+5. inspect 모듈 => 패키지의 위치를 알고싶을때
+
+```py
+import inspect
+import random
+print(inspect.getfile(random)) # random 모듈의 위치
+```

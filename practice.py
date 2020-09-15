@@ -1,59 +1,24 @@
-# 기본클래스 정의
-class Unit:
-    def __init__(self, name, hp, speed):
-        self.name = name
-        self.hp = hp
-        self.speed = speed
+class House:
+    def __init__(self, location, house_type, deal_type, price, year):
+        self.location = location
+        self.house_type = house_type
+        self.deal_type = deal_type
+        self.price = price
+        self.year = year
 
-    # 메소드 정의
-    def damaged(self, damage):
-        self.hp -= damage
-        if self.hp <= 0:
-            print('{0}: 파괴되었습니다.'.format(self.name))
-        else:
-            print('{0}: {1} 데미지를 입었습니다. [hp {2}]'.format(
-                self.name, damage, self.hp))
-
-    def move(self, location):
-        print('[지상유닛 이동]')
-        print('{0}: {1} 로 이동합니다. [이동속도 {2}]'\
-          .format(self.name, location, self.speed))
+    def show_detail(self):
+        print('{0} {1} {2} {3} {4}'\
+          .format(self.location, self.house_type, self.deal_type, self.price, self.year))
 
 
-# 클래스 상속
-class AttackUnit(Unit):
-    def __init__(self, name, hp, speed, damage):
-        Unit.__init__(self, name, hp, speed)
-        self.damage = damage
+houses = []
+house1 = House('강남', '아파트', '매매', '2억', '1989')
+houses.append(house1)
+house2 = House('강남', '아파트', '매매', '1억', '1989')
+houses.append(house2)
+house3 = House('강남', '아파트', '매매', '3억', '1989')
+houses.append(house3)
 
-    def attack(self, location):
-        print('{1}: {0} 방향으로 공격합니다.[공격력 {2}]'\
-          .format(location, self.name, self.damage))
-
-
-class Flyable:
-    def __init__(self, flying_speed):
-        self.flying_speed = flying_speed
-
-    def fly(self, name, location):
-        print('{0}: {1} 로 날아갑니다. [속도 {2}]'\
-          .format(name, location, self.flying_speed))
-
-
-# 다중상속
-class FlyableAttackUnit(AttackUnit, Flyable):
-    def __init__(self, name, hp, damage, speed, flying_speed):
-        Flyable.__init__(self, flying_speed)
-        AttackUnit.__init__(self, name, hp, damage, speed)
-
-    def move(self, location):
-        print('[공중유닛]')
-        print('{0}: {1} 로 이동합니다. [이동속도 {2}]'\
-            .format(self.name, location, self.flying_speed))
-
-
-# marine = AttackUnit('마린', 100, 20, 10)
-# marine.move(10)
-
-prince = FlyableAttackUnit('스카웃', 100, 60, 0, 9999)
-prince.move(10)
+print('총 {0} 개의 매물이 있습니다.'.format(len(houses)))
+for house in houses:
+    house.show_detail()
